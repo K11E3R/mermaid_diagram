@@ -1,96 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Light Mode (Default) */
+        body {
+            background: #ffffff;
+            color: #333;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .oe_slogan {
+            text-align: center;
+            color: #714B67;
+        }
+        
+        .oe_demo h1, .oe_demo h2, .oe_demo h3 {
+            color: #714B67;
+        }
+        
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #714B67;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background: #5a3c52;
+            transform: scale(1.05);
+        }
+        
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .oe_slogan {
+            color: #9d7fa8;
+        }
+        
+        body.dark-mode .oe_demo h1,
+        body.dark-mode .oe_demo h2,
+        body.dark-mode .oe_demo h3 {
+            color: #9d7fa8;
+        }
+        
+        body.dark-mode .oe_container {
+            background: #1a1a1a;
+        }
+        
+        body.dark-mode .oe_container:not(.oe_dark) {
+            background: #1a1a1a;
+        }
+        
+        body.dark-mode section[style*="background: #f9f9f9"] {
+            background: #252525 !important;
+        }
+        
+        body.dark-mode h2, body.dark-mode h3, body.dark-mode h4 {
+            color: #9d7fa8 !important;
+        }
+        
+        body.dark-mode p, body.dark-mode li {
+            color: #b0b0b0 !important;
+        }
+        
+        body.dark-mode code {
+            background: #2d2d2d !important;
+            color: #ff6b9d !important;
+        }
+        
+        body.dark-mode pre {
+            background: #0d0d0d !important;
+            border: 1px solid #333 !important;
+        }
+        
+        body.dark-mode img {
+            opacity: 0.95;
+            border: 1px solid #333 !important;
+        }
+        
+        body.dark-mode a {
+            color: #9d7fa8 !important;
+        }
+        
+        body.dark-mode .oe_dark {
+            background: linear-gradient(135deg, #2d1f28 0%, #1a1217 100%) !important;
+        }
+        
+        body.dark-mode [style*="background: #714B67"],
+        body.dark-mode [style*="background:#714B67"] {
+            background: #9d7fa8 !important;
+        }
+        
+        body.dark-mode [style*="color: #714B67"],
+        body.dark-mode [style*="color:#714B67"] {
+            color: #9d7fa8 !important;
+        }
+        
+        body.dark-mode [style*="color: #333"],
+        body.dark-mode [style*="color:#333"] {
+            color: #e0e0e0 !important;
+        }
+        
+        body.dark-mode [style*="color: #555"],
+        body.dark-mode [style*="color:#555"] {
+            color: #b0b0b0 !important;
+        }
+        
+        body.dark-mode [style*="color: #666"],
+        body.dark-mode [style*="color:#666"] {
+            color: #a0a0a0 !important;
+        }
+        
+        body.dark-mode [style*="color: #888"],
+        body.dark-mode [style*="color:#888"] {
+            color: #808080 !important;
+        }
+        
+        body.dark-mode [style*="border-top: 2px solid #714B67"] {
+            border-top-color: #9d7fa8 !important;
+        }
+        
+        body.dark-mode [style*="border: 1px solid #ddd"],
+        body.dark-mode [style*="border:1px solid #ddd"] {
+            border-color: #444 !important;
+        }
+        
+        body.dark-mode [style*="border-top: 1px solid #eee"] {
+            border-top-color: #333 !important;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Dark Mode Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()">
+    <span id="theme-icon">&#127769;</span> <span id="theme-text">Dark Mode</span>
+</button>
+
+<script>
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('theme-icon').innerHTML = '&#9728;';
+        document.getElementById('theme-text').textContent = 'Light Mode';
+    }
+    
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        
+        let theme = 'light';
+        let icon = '&#127769;';
+        let text = 'Dark Mode';
+        
+        if (document.body.classList.contains('dark-mode')) {
+            theme = 'dark';
+            icon = '&#9728;';
+            text = 'Light Mode';
+        }
+        
+        localStorage.setItem('theme', theme);
+        document.getElementById('theme-icon').innerHTML = icon;
+        document.getElementById('theme-text').textContent = text;
+    }
+</script>
+
+<!-- HERO SECTION -->
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan" style="color: #714B67; font-size: 32px;">Mermaid Diagrams</h2>
-        <h3 class="oe_slogan" style="font-size: 18px; color: #666;">
+        <h2 class="oe_slogan" style="font-size: 36px; margin-bottom: 10px;">Mermaid Diagrams for Odoo</h2>
+        <h3 class="oe_slogan" style="color: #555; font-weight: 300; font-size: 20px;">
             Transform your Knowledge articles with beautiful, interactive diagrams
         </h3>
     </div>
 </section>
 
+<!-- MAIN DEMO -->
+<section class="oe_container oe_separator">
+    <div class="oe_row">
+        <div class="oe_span12">
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="final_rendered.png" alt="Mermaid Diagram Example" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);"/>
+            </div>
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span12">
+            <p class="oe_mt16" style="text-align: center; font-style: italic; color: #666; font-size: 14px;">
+                Create professional flowcharts, sequence diagrams, and more - all rendered live in Odoo
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- KEY BENEFITS -->
+<section class="oe_container oe_dark" style="padding: 50px 0;">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color: white; font-size: 30px; margin-bottom: 40px;">Why Mermaid Diagrams?</h2>
+        
+        <div class="oe_span4">
+            <div style="text-align: center; padding: 20px;">
+                <div style="width: 60px; height: 60px; margin: 0 auto 15px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px;">
+                    &#9889;
+                </div>
+                <h3 style="color: white; margin-bottom: 10px;">Live Rendering</h3>
+                <p style="color: rgba(255,255,255,0.85); font-size: 14px;">
+                    Diagrams render instantly as you type. No external tools or image exports needed.
+                </p>
+            </div>
+        </div>
+        
+        <div class="oe_span4">
+            <div style="text-align: center; padding: 20px;">
+                <div style="width: 60px; height: 60px; margin: 0 auto 15px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px;">
+                    &#127912;
+                </div>
+                <h3 style="color: white; margin-bottom: 10px;">Theme Adaptive</h3>
+                <p style="color: rgba(255,255,255,0.85); font-size: 14px;">
+                    Automatically matches Odoo's light and dark modes with custom color schemes.
+                </p>
+            </div>
+        </div>
+        
+        <div class="oe_span4">
+            <div style="text-align: center; padding: 20px;">
+                <div style="width: 60px; height: 60px; margin: 0 auto 15px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px;">
+                    &#128221;
+                </div>
+                <h3 style="color: white; margin-bottom: 10px;">Native Integration</h3>
+                <p style="color: rgba(255,255,255,0.85); font-size: 14px;">
+                    Works seamlessly in code blocks. No plugins, no configuration required.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS HEADER -->
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <div class="oe_demo oe_picture oe_screenshot" style="text-align: center;">
-            <img src="final_rendered.png" alt="Mermaid Diagram Example" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);"/>
-        </div>
-        <p style="text-align: center; color: #888; font-style: italic; margin-top: 10px;">
-            A business process flowchart rendered directly in Odoo - dark mode adaptive!
+        <h2 class="oe_slogan" style="font-size: 32px; margin: 50px 0 20px;">How It Works</h2>
+        <p class="oe_mt16" style="text-align: center; color: #666; font-size: 16px; max-width: 600px; margin: 0 auto 40px;">
+            Creating diagrams is simple and intuitive. Follow these three easy steps:
         </p>
     </div>
 </section>
 
-<section class="oe_container oe_dark" style="background: linear-gradient(135deg, #714B67 0%, #4a3347 100%); padding: 30px 0;">
+<!-- STEP 1 -->
+<section class="oe_container">
     <div class="oe_row oe_spaced">
-        <h2 style="color: white; text-align: center; margin-bottom: 30px;">Key Features</h2>
-        <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-            <div style="flex: 1; min-width: 250px; max-width: 300px; background: rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; text-align: center;">
-                <div style="font-size: 32px; margin-bottom: 10px;">&#127912;</div>
-                <h4 style="color: white; margin: 10px 0;">Live Rendering</h4>
-                <p style="color: rgba(255,255,255,0.8); font-size: 14px;">Diagrams render instantly as you type</p>
+        <div class="oe_span6">
+            <div style="padding: 20px 40px 20px 20px;">
+                <div style="display: inline-block; background: #714B67; color: white; width: 40px; height: 40px; border-radius: 50%; text-align: center; line-height: 40px; font-weight: bold; font-size: 18px; margin-bottom: 15px;">1</div>
+                <h3 style="color: #714B67; margin-bottom: 10px; font-size: 24px;">Insert a Code Block</h3>
+                <p style="color: #555; font-size: 15px; line-height: 1.6;">
+                    Type <code style="background: #f4f4f4; padding: 3px 8px; border-radius: 3px; color: #d73a49; font-size: 13px;">/code</code> 
+                    in any Knowledge article or HTML field to insert a code block. The command menu will appear instantly.
+                </p>
             </div>
-            <div style="flex: 1; min-width: 250px; max-width: 300px; background: rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; text-align: center;">
-                <div style="font-size: 32px; margin-bottom: 10px;">&#127763;</div>
-                <h4 style="color: white; margin: 10px 0;">Theme Adaptive</h4>
-                <p style="color: rgba(255,255,255,0.8); font-size: 14px;">Automatically matches Odoo's light/dark mode</p>
-            </div>
-            <div style="flex: 1; min-width: 250px; max-width: 300px; background: rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; text-align: center;">
-                <div style="font-size: 32px; margin-bottom: 10px;">&#128221;</div>
-                <h4 style="color: white; margin: 10px 0;">Native Integration</h4>
-                <p style="color: rgba(255,255,255,0.8); font-size: 14px;">Works seamlessly in code blocks - no plugins needed</p>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="step_1_code_command.png" alt="Step 1: Insert code block" style="border: 1px solid #ddd; border-radius: 6px;"/>
             </div>
         </div>
     </div>
 </section>
 
+<!-- STEP 2 -->
+<section class="oe_container" style="background: #f9f9f9; padding: 40px 0;">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6">
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="step_2_select_mermaid.png" alt="Step 2: Select Mermaid language" style="border: 1px solid #ddd; border-radius: 6px;"/>
+            </div>
+        </div>
+        <div class="oe_span6">
+            <div style="padding: 20px 20px 20px 40px;">
+                <div style="display: inline-block; background: #714B67; color: white; width: 40px; height: 40px; border-radius: 50%; text-align: center; line-height: 40px; font-weight: bold; font-size: 18px; margin-bottom: 15px;">2</div>
+                <h3 style="color: #714B67; margin-bottom: 10px; font-size: 24px;">Select Mermaid Language</h3>
+                <p style="color: #555; font-size: 15px; line-height: 1.6;">
+                    Click the language dropdown (shows "Plain Text" by default) and select <strong>Mermaid</strong> from the comprehensive list of programming languages.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STEP 3 -->
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <h2 style="text-align: center; color: #714B67; margin: 40px 0 30px;">How It Works</h2>
+        <div class="oe_span6">
+            <div style="padding: 20px 40px 20px 20px;">
+                <div style="display: inline-block; background: #714B67; color: white; width: 40px; height: 40px; border-radius: 50%; text-align: center; line-height: 40px; font-weight: bold; font-size: 18px; margin-bottom: 15px;">3</div>
+                <h3 style="color: #714B67; margin-bottom: 10px; font-size: 24px;">Write and Render</h3>
+                <p style="color: #555; font-size: 15px; line-height: 1.6;">
+                    Enter your Mermaid syntax and watch your diagram render automatically! Click on the diagram anytime to edit it. 
+                    Changes are saved automatically with your article.
+                </p>
+            </div>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="final_rendered.png" alt="Final rendered diagram" style="border: 1px solid #ddd; border-radius: 6px;"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SUPPORTED DIAGRAM TYPES -->
+<section class="oe_container oe_dark" style="padding: 50px 0;">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color: white; font-size: 30px; margin-bottom: 30px;">Supported Diagram Types</h2>
+        <p style="text-align: center; color: rgba(255,255,255,0.9); font-size: 16px; margin-bottom: 30px;">
+            Powered by Mermaid.js 11.x - the most popular JavaScript diagramming library
+        </p>
         
-        <div style="margin-bottom: 40px;">
-            <h4 style="color: #333;">Step 1: Insert a Code Block</h4>
-            <p style="color: #666;">Type <code style="background: #f4f4f4; padding: 2px 8px; border-radius: 4px;">/code</code> in any Knowledge article or HTML field:</p>
-            <div class="oe_demo oe_picture oe_screenshot" style="text-align: center; margin: 20px 0;">
-                <img src="step_1_code_command.png" alt="Step 1: Insert code block" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);"/>
-            </div>
-        </div>
-
-        <div style="margin-bottom: 40px;">
-            <h4 style="color: #333;">Step 2: Select Mermaid Language</h4>
-            <p style="color: #666;">Click the language dropdown and select <strong>Mermaid</strong> from the list:</p>
-            <div class="oe_demo oe_picture oe_screenshot" style="text-align: center; margin: 20px 0;">
-                <img src="step_2_select_mermaid.png" alt="Step 2: Select Mermaid language" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);"/>
-            </div>
-        </div>
-
-        <div style="margin-bottom: 40px;">
-            <h4 style="color: #333;">Step 3: Write Your Diagram</h4>
-            <p style="color: #666;">Enter your Mermaid syntax and watch it render automatically!</p>
-            <div class="oe_demo oe_picture oe_screenshot" style="text-align: center; margin: 20px 0;">
-                <img src="final_rendered.png" alt="Final rendered diagram" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);"/>
-            </div>
+        <div class="oe_span12" style="text-align: center;">
+            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 20px; margin: 5px; color: white; font-size: 14px;">Flowcharts</div>
+            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 20px; margin: 5px; color: white; font-size: 14px;">Sequence Diagrams</div>
+            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 20px; margin: 5px; color: white; font-size: 14px;">Gantt Charts</div>
+            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 20px; margin: 5px; color: white; font-size: 14px;">Entity Relationship Diagrams</div>
+            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 20px; margin: 5px; color: white; font-size: 14px;">Pie Charts</div>
+            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 20px; margin: 5px; color: white; font-size: 14px;">State Diagrams</div>
+            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 20px; margin: 5px; color: white; font-size: 14px;">Class Diagrams</div>
+            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 20px; margin: 5px; color: white; font-size: 14px;">User Journey</div>
+            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 20px; margin: 5px; color: white; font-size: 14px;">Git Graphs</div>
+            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 20px; margin: 5px; color: white; font-size: 14px;">Mind Maps</div>
+            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 20px; margin: 5px; color: white; font-size: 14px;">Quadrant Charts</div>
+            <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 20px; margin: 5px; color: white; font-size: 14px;">Requirement Diagrams</div>
         </div>
     </div>
 </section>
 
-<section class="oe_container" style="background: #f8f9fa; padding: 40px 0;">
-    <div class="oe_row oe_spaced">
-        <h2 style="text-align: center; color: #714B67; margin-bottom: 30px;">Supported Diagram Types</h2>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; text-align: center;">
-            <span style="background: white; padding: 10px 20px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">Flowcharts</span>
-            <span style="background: white; padding: 10px 20px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">Sequence Diagrams</span>
-            <span style="background: white; padding: 10px 20px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">Gantt Charts</span>
-            <span style="background: white; padding: 10px 20px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">ER Diagrams</span>
-            <span style="background: white; padding: 10px 20px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">Pie Charts</span>
-            <span style="background: white; padding: 10px 20px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">State Diagrams</span>
-            <span style="background: white; padding: 10px 20px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">Class Diagrams</span>
-            <span style="background: white; padding: 10px 20px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">Mind Maps</span>
-        </div>
-    </div>
-</section>
-
+<!-- CODE EXAMPLE -->
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <h2 style="text-align: center; color: #714B67; margin: 40px 0 30px;">Example Code</h2>
-        <pre style="background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Fira Code', monospace;"><code style="color: #d4d4d4;">flowchart TD
+        <h2 class="oe_slogan" style="font-size: 30px; margin: 50px 0 30px;">Example: Business Process Flow</h2>
+        
+        <div class="oe_span12">
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 25px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 13px; line-height: 1.5; margin: 20px 0;">flowchart TD
     A[Start] --&gt; B[Receive Customer Request]
     B --&gt; C{Is Request Valid?}
     C --&gt;|No| D[Send Error Message]
@@ -104,45 +369,207 @@
     I --&gt; J{Customer Accepts?}
     J --&gt;|No| K[Close Request]
     J --&gt;|Yes| L[Create Sales Order]
-    L --&gt; M[End]</code></pre>
-    </div>
-</section>
-
-<section class="oe_container" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 0;">
-    <div class="oe_row oe_spaced">
-        <div style="text-align: center;">
-            <h2 style="color: white; margin-bottom: 15px;">&#128274; Secure &amp; Performant</h2>
-            <p style="color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto; font-size: 16px;">
-                Built with security in mind. Mermaid runs in strict mode to prevent XSS attacks. 
-                The library loads lazily from CDN only when needed, ensuring zero performance impact on pages without diagrams.
+    L --&gt; M[End]</pre>
+        </div>
+        
+        <div class="oe_span12" style="text-align: center; margin-top: 20px;">
+            <p style="color: #666; font-size: 14px;">
+                The code above creates the flowchart shown at the top of this page
             </p>
         </div>
     </div>
 </section>
 
-<section class="oe_container">
+<!-- FEATURES GRID -->
+<section class="oe_container" style="background: #f9f9f9; padding: 50px 0;">
     <div class="oe_row oe_spaced">
-        <div style="text-align: center; padding: 40px 0;">
-            <h3 style="color: #333; margin-bottom: 20px;">Ready to visualize your ideas?</h3>
-            <p style="color: #666; margin-bottom: 30px;">
-                Install now and start creating beautiful diagrams in your Odoo Knowledge articles!
-            </p>
-            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <a href="https://mermaid.js.org/intro/" target="_blank" style="background: #714B67; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">Mermaid Docs</a>
-                <a href="https://github.com/K11E3R/mermaid_diagram" target="_blank" style="background: #333; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">GitHub</a>
+        <h2 class="oe_slogan" style="font-size: 30px; margin-bottom: 40px;">Complete Feature Set</h2>
+        
+        <div class="oe_span6">
+            <div style="padding: 20px; margin-bottom: 20px;">
+                <h4 style="color: #714B67; margin-bottom: 10px; font-size: 18px;">&#128274; Security First</h4>
+                <p style="color: #555; font-size: 14px; line-height: 1.6;">
+                    Runs in strict security mode to prevent XSS attacks. Your data stays safe.
+                </p>
+            </div>
+        </div>
+        
+        <div class="oe_span6">
+            <div style="padding: 20px; margin-bottom: 20px;">
+                <h4 style="color: #714B67; margin-bottom: 10px; font-size: 18px;">&#9889; Performance Optimized</h4>
+                <p style="color: #555; font-size: 14px; line-height: 1.6;">
+                    Lazy-loaded from CDN only when needed. Zero impact on pages without diagrams.
+                </p>
+            </div>
+        </div>
+        
+        <div class="oe_span6">
+            <div style="padding: 20px; margin-bottom: 20px;">
+                <h4 style="color: #714B67; margin-bottom: 10px; font-size: 18px;">&#128190; Auto-Save</h4>
+                <p style="color: #555; font-size: 14px; line-height: 1.6;">
+                    Diagrams are saved with your content automatically. No manual exports needed.
+                </p>
+            </div>
+        </div>
+        
+        <div class="oe_span6">
+            <div style="padding: 20px; margin-bottom: 20px;">
+                <h4 style="color: #714B67; margin-bottom: 10px; font-size: 18px;">&#9842; Accessibility</h4>
+                <p style="color: #555; font-size: 14px; line-height: 1.6;">
+                    Full keyboard navigation and ARIA support for screen readers.
+                </p>
+            </div>
+        </div>
+        
+        <div class="oe_span6">
+            <div style="padding: 20px; margin-bottom: 20px;">
+                <h4 style="color: #714B67; margin-bottom: 10px; font-size: 18px;">&#128396; Click to Edit</h4>
+                <p style="color: #555; font-size: 14px; line-height: 1.6;">
+                    Click any rendered diagram to open the editor and make changes instantly.
+                </p>
+            </div>
+        </div>
+        
+        <div class="oe_span6">
+            <div style="padding: 20px; margin-bottom: 20px;">
+                <h4 style="color: #714B67; margin-bottom: 10px; font-size: 18px;">&#127760; Browser Compatible</h4>
+                <p style="color: #555; font-size: 14px; line-height: 1.6;">
+                    Works on Chrome 90+, Firefox 88+, Safari 14+, and Edge 90+.
+                </p>
             </div>
         </div>
     </div>
 </section>
 
+<!-- USE CASES -->
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <div style="text-align: center; padding: 20px 0; border-top: 1px solid #eee;">
-            <p style="color: #888; margin: 0;">
-                <strong>Author:</strong> <a href="https://github.com/K11E3R" style="color: #714B67;">K11E3R</a> |
-                <strong>License:</strong> LGPL-3 |
-                <strong>Version:</strong> 19.0.1.0.0
+        <h2 class="oe_slogan" style="font-size: 30px; margin: 50px 0 30px;">Perfect For...</h2>
+        
+        <div class="oe_span4">
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 48px; margin-bottom: 15px;">&#128188;</div>
+                <h4 style="color: #714B67; margin-bottom: 10px;">Process Documentation</h4>
+                <p style="color: #666; font-size: 14px;">
+                    Document business processes, workflows, and procedures with clear flowcharts.
+                </p>
+            </div>
+        </div>
+        
+        <div class="oe_span4">
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 48px; margin-bottom: 15px;">&#128104;&#8205;&#128187;</div>
+                <h4 style="color: #714B67; margin-bottom: 10px;">Technical Documentation</h4>
+                <p style="color: #666; font-size: 14px;">
+                    Create architecture diagrams, database schemas, and API sequence flows.
+                </p>
+            </div>
+        </div>
+        
+        <div class="oe_span4">
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 48px; margin-bottom: 15px;">&#128202;</div>
+                <h4 style="color: #714B67; margin-bottom: 10px;">Project Planning</h4>
+                <p style="color: #666; font-size: 14px;">
+                    Visualize project timelines with Gantt charts and track dependencies.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="oe_container oe_dark" style="padding: 50px 0;">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12" style="text-align: center;">
+            <h2 style="color: white; font-size: 30px; margin-bottom: 20px;">Ready to Visualize Your Ideas?</h2>
+            <p style="color: rgba(255,255,255,0.9); font-size: 16px; margin-bottom: 30px;">
+                Install now and start creating beautiful diagrams in your Odoo Knowledge articles
+            </p>
+            <div style="margin: 30px 0;">
+                <a href="https://mermaid.js.org/intro/" target="_blank" style="display: inline-block; background: white; color: #714B67; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; margin: 5px; font-size: 15px;">
+                    &#128214; Mermaid Documentation
+                </a>
+                <a href="https://github.com/K11E3R/mermaid_diagram" target="_blank" style="display: inline-block; background: rgba(255,255,255,0.2); color: white; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; margin: 5px; font-size: 15px;">
+                    &#11088; View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INSTALLATION -->
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="font-size: 30px; margin: 50px 0 30px;">Installation</h2>
+        
+        <div class="oe_span12">
+            <ol style="color: #555; font-size: 15px; line-height: 2; max-width: 700px; margin: 0 auto;">
+                <li>Download or clone the module into your Odoo addons directory</li>
+                <li>Restart your Odoo server</li>
+                <li>Go to <strong>Apps</strong> &rarr; Update Apps List</li>
+                <li>Search for <strong>"Mermaid Diagrams"</strong></li>
+                <li>Click <strong>Install</strong></li>
+                <li>Start creating diagrams immediately - no configuration needed!</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- TECHNICAL INFO -->
+<section class="oe_container" style="background: #f9f9f9; padding: 40px 0;">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="font-size: 28px; margin-bottom: 30px;">Technical Information</h2>
+        
+        <div class="oe_span6">
+            <h4 style="color: #714B67; margin-bottom: 15px;">Dependencies</h4>
+            <ul style="color: #555; font-size: 14px; line-height: 1.8;">
+                <li><code>html_editor</code> (included in Odoo 19 core)</li>
+                <li>Mermaid.js 11.x (loaded from CDN)</li>
+            </ul>
+        </div>
+        
+        <div class="oe_span6">
+            <h4 style="color: #714B67; margin-bottom: 15px;">Compatibility</h4>
+            <ul style="color: #555; font-size: 14px; line-height: 1.8;">
+                <li>Odoo 19.0 Community and Enterprise</li>
+                <li>Works on Odoo.sh, Odoo Online, and On-Premise</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12" style="text-align: center; padding: 30px 0;">
+            <h3 style="color: #714B67; margin-bottom: 15px;">Need Help?</h3>
+            <p style="color: #666; font-size: 15px; margin-bottom: 20px;">
+                Report issues or request features on our GitHub repository
+            </p>
+            <a href="https://github.com/K11E3R/mermaid_diagram/issues" target="_blank" style="display: inline-block; background: #714B67; color: white; padding: 10px 25px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                Report an Issue
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<section class="oe_container">
+    <div class="oe_row">
+        <div class="oe_span12" style="text-align: center; padding: 30px 0; border-top: 2px solid #714B67; margin-top: 40px;">
+            <p style="color: #888; font-size: 14px; margin-bottom: 5px;">
+                <strong>Author:</strong> <a href="https://github.com/K11E3R" style="color: #714B67; text-decoration: none;">K11E3R</a>
+            </p>
+            <p style="color: #888; font-size: 14px; margin-bottom: 5px;">
+                <strong>License:</strong> LGPL-3 | <strong>Version:</strong> 19.0.1.0.0
+            </p>
+            <p style="color: #aaa; font-size: 12px; margin-top: 15px;">
+                Built with care for the Odoo community
             </p>
         </div>
     </div>
 </section>
+
+</body>
+</html>
