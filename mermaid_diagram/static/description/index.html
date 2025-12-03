@@ -1,344 +1,75 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: #0f0f0f;
-            color: #e0e0e0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-        }
-        
-        .oe_container {
-            background: #0f0f0f;
-            padding: 40px 20px;
-        }
-        
-        .oe_dark {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        }
-        
-        .accent-section {
-            background: #1a1a1a;
-        }
-        
-        .oe_row {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        h2.oe_slogan {
-            text-align: center;
-            color: #00d9ff;
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
-        }
-        
-        h3.oe_slogan {
-            text-align: center;
-            color: #b0b0b0;
-            font-size: 20px;
-            font-weight: 400;
-            margin-bottom: 20px;
-        }
-        
-        h2 {
-            color: #00d9ff;
-            font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-        
-        h3 {
-            color: #ffffff;
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        
-        h4 {
-            color: #00d9ff;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        p {
-            color: #b0b0b0;
-            font-size: 16px;
-            line-height: 1.8;
-        }
-        
-        .oe_demo img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.15);
-            border: 1px solid #2a2a2a;
-        }
-        
-        code {
-            background: #1a1a1a;
-            color: #00d9ff;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-family: 'Courier New', monospace;
-        }
-        
-        pre {
-            background: #0a0a0a;
-            border: 1px solid #2a2a2a;
-            border-left: 4px solid #00d9ff;
-            padding: 25px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 20px 0;
-        }
-        
-        pre code {
-            background: transparent;
-            padding: 0;
-            color: #e0e0e0;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-        
-        .feature-card {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            border-color: #00d9ff;
-            box-shadow: 0 8px 30px rgba(0, 217, 255, 0.2);
-            transform: translateY(-5px);
-        }
-        
-        .step-number {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #00d9ff, #0099cc);
-            color: #0f0f0f;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 50px;
-            font-weight: 700;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        
-        .tag {
-            display: inline-block;
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            padding: 10px 20px;
-            border-radius: 25px;
-            margin: 8px;
-            color: #00d9ff;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .tag:hover {
-            background: #00d9ff;
-            color: #0f0f0f;
-            border-color: #00d9ff;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            margin: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #00d9ff, #0099cc);
-            color: #0f0f0f;
-            border: none;
-        }
-        
-        .btn-primary:hover {
-            box-shadow: 0 8px 25px rgba(0, 217, 255, 0.4);
-            transform: translateY(-2px);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: #00d9ff;
-            border: 2px solid #00d9ff;
-        }
-        
-        .btn-secondary:hover {
-            background: #00d9ff;
-            color: #0f0f0f;
-        }
-        
-        .icon-badge {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            border: 2px solid #2a2a2a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 32px;
-        }
-        
-        .divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #00d9ff, transparent);
-            margin: 50px auto;
-            max-width: 600px;
-        }
-        
-        a {
-            color: #00d9ff;
-            text-decoration: none;
-        }
-        
-        a:hover {
-            color: #00aacc;
-        }
-        
-        strong {
-            color: #ffffff;
-        }
-        
-        ol, ul {
-            margin-left: 20px;
-        }
-        
-        li {
-            color: #b0b0b0;
-            margin-bottom: 10px;
-        }
-        
-        /* Grid System */
-        .oe_span4, .oe_span6, .oe_span12 {
-            display: inline-block;
-            vertical-align: top;
-            padding: 15px;
-        }
-        
-        .oe_span4 { width: 33.33%; }
-        .oe_span6 { width: 50%; }
-        .oe_span12 { width: 100%; }
-        
-        @media (max-width: 768px) {
-            .oe_span4, .oe_span6 {
-                width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<!-- HERO SECTION -->
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan">Mermaid Diagrams for Odoo</h2>
-        <h3 class="oe_slogan">Professional diagram rendering engine for Knowledge articles</h3>
+        <h2 class="oe_slogan" style="font-size: 42px;">Mermaid Diagrams for Odoo</h2>
+        <h3 class="oe_slogan" style="font-weight: 300; font-size: 20px;">
+            Professional diagram rendering engine
+        </h3>
     </div>
 </section>
 
-<!-- MAIN DEMO -->
-<section class="oe_container">
+<section class="oe_container oe_separator">
     <div class="oe_row">
         <div class="oe_span12">
             <div class="oe_demo oe_picture oe_screenshot">
-                <img src="final_rendered.png" alt="Mermaid Diagram Example"/>
+                <img src="final_rendered.png" alt="Mermaid Diagram Example" style="width: 100%; max-width: 900px; display: block; margin: 0 auto;"/>
             </div>
         </div>
     </div>
     <div class="oe_row">
         <div class="oe_span12">
-            <p style="text-align: center; font-size: 15px; margin-top: 20px; font-style: italic;">
+            <p class="oe_mt16" style="text-align: center; font-style: italic;">
                 Enterprise-grade flowcharts, sequence diagrams, and more - rendered in real-time
             </p>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- KEY BENEFITS -->
-<section class="oe_container oe_dark" style="padding: 60px 20px;">
+<section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
-        <h2 style="text-align: center; color: white; font-size: 36px; margin-bottom: 50px;">Core Capabilities</h2>
-        
+        <h2 class="oe_slogan">Core Capabilities</h2>
         <div class="oe_span4">
-            <div class="feature-card">
-                <div class="icon-badge">&#9889;</div>
-                <h3 style="font-size: 20px;">Real-Time Rendering</h3>
-                <p style="font-size: 14px;">
-                    Instant diagram generation as you type. Zero latency, maximum productivity.
-                </p>
+            <div class="oe_picture" style="text-align: center; margin-bottom: 20px;">
+                <span style="font-size: 48px;">&#9889;</span>
             </div>
+            <h3 class="oe_mb16" style="text-align: center;">Real-Time Rendering</h3>
+            <p class="oe_mt16" style="text-align: center;">
+                Instant diagram generation as you type. Zero latency, maximum productivity.
+            </p>
         </div>
-        
         <div class="oe_span4">
-            <div class="feature-card">
-                <div class="icon-badge">&#128274;</div>
-                <h3 style="font-size: 20px;">Enterprise Security</h3>
-                <p style="font-size: 14px;">
-                    Strict mode prevents XSS. Built-in sanitization ensures data integrity.
-                </p>
+            <div class="oe_picture" style="text-align: center; margin-bottom: 20px;">
+                <span style="font-size: 48px;">&#128274;</span>
             </div>
+            <h3 class="oe_mb16" style="text-align: center;">Enterprise Security</h3>
+            <p class="oe_mt16" style="text-align: center;">
+                Strict mode prevents XSS. Built-in sanitization ensures data integrity.
+            </p>
         </div>
-        
         <div class="oe_span4">
-            <div class="feature-card">
-                <div class="icon-badge">&#9881;</div>
-                <h3 style="font-size: 20px;">Zero Configuration</h3>
-                <p style="font-size: 14px;">
-                    Install and start creating. No setup, no dependencies, no hassle.
-                </p>
+            <div class="oe_picture" style="text-align: center; margin-bottom: 20px;">
+                <span style="font-size: 48px;">&#9881;</span>
             </div>
+            <h3 class="oe_mb16" style="text-align: center;">Zero Configuration</h3>
+            <p class="oe_mt16" style="text-align: center;">
+                Install and start creating. No setup, no dependencies, no hassle.
+            </p>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- HOW IT WORKS -->
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <h2 style="text-align: center; font-size: 36px; margin-bottom: 50px;">Implementation Guide</h2>
+        <h2 class="oe_slogan" style="font-size: 36px;">Implementation Guide</h2>
     </div>
 </section>
 
-<!-- STEP 1 -->
-<section class="oe_container accent-section" style="padding: 50px 20px;">
+<section class="oe_container oe_separator">
     <div class="oe_row oe_spaced">
         <div class="oe_span6">
-            <div style="padding: 30px;">
-                <div class="step-number">1</div>
-                <h3 style="color: #ffffff; margin-bottom: 15px; font-size: 26px;">Insert Code Block</h3>
-                <p style="font-size: 15px; line-height: 1.8;">
+            <div style="padding-right: 30px;">
+                <div style="display: inline-block; width: 50px; height: 50px; background: #714B67; color: white; border-radius: 50%; text-align: center; line-height: 50px; font-weight: bold; font-size: 24px; margin-bottom: 20px;">1</div>
+                <h3>Insert Code Block</h3>
+                <p class="oe_mt16">
                     Access the command palette with <code>/code</code> in any Knowledge article or HTML editor. 
                     The integrated code block interface appears instantly.
                 </p>
@@ -346,25 +77,24 @@
         </div>
         <div class="oe_span6">
             <div class="oe_demo oe_picture oe_screenshot">
-                <img src="step_1_code_command.png" alt="Step 1: Insert code block"/>
+                <img src="step_1_code_command.png" alt="Step 1: Insert code block" style="width: 100%;"/>
             </div>
         </div>
     </div>
 </section>
 
-<!-- STEP 2 -->
-<section class="oe_container" style="padding: 50px 20px;">
+<section class="oe_container">
     <div class="oe_row oe_spaced">
         <div class="oe_span6">
             <div class="oe_demo oe_picture oe_screenshot">
-                <img src="step_2_select_mermaid.png" alt="Step 2: Select Mermaid"/>
+                <img src="step_2_select_mermaid.png" alt="Step 2: Select Mermaid" style="width: 100%;"/>
             </div>
         </div>
         <div class="oe_span6">
-            <div style="padding: 30px;">
-                <div class="step-number">2</div>
-                <h3 style="color: #ffffff; margin-bottom: 15px; font-size: 26px;">Select Mermaid Engine</h3>
-                <p style="font-size: 15px; line-height: 1.8;">
+            <div style="padding-left: 30px;">
+                <div style="display: inline-block; width: 50px; height: 50px; background: #714B67; color: white; border-radius: 50%; text-align: center; line-height: 50px; font-weight: bold; font-size: 24px; margin-bottom: 20px;">2</div>
+                <h3>Select Mermaid Engine</h3>
+                <p class="oe_mt16">
                     Choose <strong>Mermaid</strong> from the language selector. 
                     Native integration with Odoo's syntax highlighting system.
                 </p>
@@ -373,14 +103,13 @@
     </div>
 </section>
 
-<!-- STEP 3 -->
-<section class="oe_container accent-section" style="padding: 50px 20px;">
+<section class="oe_container oe_separator">
     <div class="oe_row oe_spaced">
         <div class="oe_span6">
-            <div style="padding: 30px;">
-                <div class="step-number">3</div>
-                <h3 style="color: #ffffff; margin-bottom: 15px; font-size: 26px;">Create & Deploy</h3>
-                <p style="font-size: 15px; line-height: 1.8;">
+            <div style="padding-right: 30px;">
+                <div style="display: inline-block; width: 50px; height: 50px; background: #714B67; color: white; border-radius: 50%; text-align: center; line-height: 50px; font-weight: bold; font-size: 24px; margin-bottom: 20px;">3</div>
+                <h3>Create &amp; Deploy</h3>
+                <p class="oe_mt16">
                     Write your diagram syntax and watch real-time rendering. 
                     Click any diagram to edit. Auto-save ensures data persistence.
                 </p>
@@ -388,48 +117,42 @@
         </div>
         <div class="oe_span6">
             <div class="oe_demo oe_picture oe_screenshot">
-                <img src="final_rendered.png" alt="Step 3: Rendered diagram"/>
+                <img src="final_rendered.png" alt="Step 3: Rendered diagram" style="width: 100%;"/>
             </div>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- DIAGRAM TYPES -->
-<section class="oe_container oe_dark" style="padding: 60px 20px;">
+<section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
-        <h2 style="text-align: center; color: white; font-size: 36px; margin-bottom: 20px;">Supported Diagram Types</h2>
-        <p style="text-align: center; color: #b0b0b0; font-size: 16px; margin-bottom: 40px;">
-            Powered by Mermaid.js 11.x - Industry standard diagramming engine
-        </p>
-        
+        <h2 class="oe_slogan">Supported Diagram Types</h2>
+        <div class="oe_span12">
+            <p class="oe_mt16" style="text-align: center; font-size: 16px; margin-bottom: 30px;">
+                Powered by Mermaid.js 11.x - Industry standard diagramming engine
+            </p>
+        </div>
         <div class="oe_span12" style="text-align: center;">
-            <span class="tag">Flowcharts</span>
-            <span class="tag">Sequence Diagrams</span>
-            <span class="tag">Gantt Charts</span>
-            <span class="tag">ER Diagrams</span>
-            <span class="tag">State Diagrams</span>
-            <span class="tag">Class Diagrams</span>
-            <span class="tag">Pie Charts</span>
-            <span class="tag">User Journey</span>
-            <span class="tag">Git Graphs</span>
-            <span class="tag">Mind Maps</span>
-            <span class="tag">Quadrant Charts</span>
-            <span class="tag">Requirement Diagrams</span>
+            <span style="display: inline-block; background: rgba(113, 75, 103, 0.1); border: 1px solid #714B67; padding: 8px 18px; border-radius: 20px; margin: 6px; font-size: 14px;">Flowcharts</span>
+            <span style="display: inline-block; background: rgba(113, 75, 103, 0.1); border: 1px solid #714B67; padding: 8px 18px; border-radius: 20px; margin: 6px; font-size: 14px;">Sequence Diagrams</span>
+            <span style="display: inline-block; background: rgba(113, 75, 103, 0.1); border: 1px solid #714B67; padding: 8px 18px; border-radius: 20px; margin: 6px; font-size: 14px;">Gantt Charts</span>
+            <span style="display: inline-block; background: rgba(113, 75, 103, 0.1); border: 1px solid #714B67; padding: 8px 18px; border-radius: 20px; margin: 6px; font-size: 14px;">ER Diagrams</span>
+            <span style="display: inline-block; background: rgba(113, 75, 103, 0.1); border: 1px solid #714B67; padding: 8px 18px; border-radius: 20px; margin: 6px; font-size: 14px;">State Diagrams</span>
+            <span style="display: inline-block; background: rgba(113, 75, 103, 0.1); border: 1px solid #714B67; padding: 8px 18px; border-radius: 20px; margin: 6px; font-size: 14px;">Class Diagrams</span>
+            <span style="display: inline-block; background: rgba(113, 75, 103, 0.1); border: 1px solid #714B67; padding: 8px 18px; border-radius: 20px; margin: 6px; font-size: 14px;">Pie Charts</span>
+            <span style="display: inline-block; background: rgba(113, 75, 103, 0.1); border: 1px solid #714B67; padding: 8px 18px; border-radius: 20px; margin: 6px; font-size: 14px;">User Journey</span>
+            <span style="display: inline-block; background: rgba(113, 75, 103, 0.1); border: 1px solid #714B67; padding: 8px 18px; border-radius: 20px; margin: 6px; font-size: 14px;">Git Graphs</span>
+            <span style="display: inline-block; background: rgba(113, 75, 103, 0.1); border: 1px solid #714B67; padding: 8px 18px; border-radius: 20px; margin: 6px; font-size: 14px;">Mind Maps</span>
+            <span style="display: inline-block; background: rgba(113, 75, 103, 0.1); border: 1px solid #714B67; padding: 8px 18px; border-radius: 20px; margin: 6px; font-size: 14px;">Quadrant Charts</span>
+            <span style="display: inline-block; background: rgba(113, 75, 103, 0.1); border: 1px solid #714B67; padding: 8px 18px; border-radius: 20px; margin: 6px; font-size: 14px;">Requirement Diagrams</span>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- CODE EXAMPLE -->
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <h2 style="text-align: center; font-size: 36px; margin-bottom: 30px;">Example Implementation</h2>
-        
+        <h2 class="oe_slogan">Example Implementation</h2>
         <div class="oe_span12">
-            <pre><code>flowchart TD
+            <pre style="background: #2d2d2d; color: #ddd; padding: 20px; border-radius: 6px; border-left: 4px solid #714B67; overflow-x: auto; font-size: 13px; line-height: 1.5;">flowchart TD
     A[Start] --&gt; B[Receive Customer Request]
     B --&gt; C{Is Request Valid?}
     C --&gt;|No| D[Send Error Message]
@@ -443,132 +166,114 @@
     I --&gt; J{Customer Accepts?}
     J --&gt;|No| K[Close Request]
     J --&gt;|Yes| L[Create Sales Order]
-    L --&gt; M[End]</code></pre>
+    L --&gt; M[End]</pre>
         </div>
-        
-        <div class="oe_span12" style="text-align: center; margin-top: 20px;">
-            <p style="font-size: 14px; font-style: italic;">
+        <div class="oe_span12">
+            <p class="oe_mt16" style="text-align: center; font-style: italic;">
                 Business process visualization - rendered from code above
             </p>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- TECHNICAL FEATURES -->
-<section class="oe_container accent-section" style="padding: 60px 20px;">
+<section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
-        <h2 style="text-align: center; font-size: 36px; margin-bottom: 50px;">Technical Excellence</h2>
+        <h2 class="oe_slogan">Technical Excellence</h2>
         
         <div class="oe_span6">
-            <div style="padding: 20px;">
-                <h4>Performance Optimization</h4>
-                <p style="font-size: 14px; margin-bottom: 25px;">
-                    CDN-based lazy loading. Diagram caching. Zero impact on pages without diagrams.
-                </p>
-                
-                <h4>Theme Integration</h4>
-                <p style="font-size: 14px; margin-bottom: 25px;">
-                    Auto-detects Odoo light/dark modes. Custom color schemes with CSS variable support.
-                </p>
-                
-                <h4>Accessibility Compliance</h4>
-                <p style="font-size: 14px; margin-bottom: 25px;">
-                    Full keyboard navigation. ARIA attributes. Screen reader compatible.
-                </p>
-            </div>
+            <h4 style="margin-top: 20px; margin-bottom: 10px;">Performance Optimization</h4>
+            <p>
+                CDN-based lazy loading. Diagram caching. Zero impact on pages without diagrams.
+            </p>
+            
+            <h4 style="margin-top: 20px; margin-bottom: 10px;">Theme Integration</h4>
+            <p>
+                Auto-detects Odoo light/dark modes. Custom color schemes with CSS variable support.
+            </p>
+            
+            <h4 style="margin-top: 20px; margin-bottom: 10px;">Accessibility Compliance</h4>
+            <p>
+                Full keyboard navigation. ARIA attributes. Screen reader compatible.
+            </p>
         </div>
         
         <div class="oe_span6">
-            <div style="padding: 20px;">
-                <h4>Data Persistence</h4>
-                <p style="font-size: 14px; margin-bottom: 25px;">
-                    Base64-encoded source preservation. Reliable auto-save. Version-safe storage.
-                </p>
-                
-                <h4>Browser Compatibility</h4>
-                <p style="font-size: 14px; margin-bottom: 25px;">
-                    Chrome 90+, Firefox 88+, Safari 14+, Edge 90+. Full ES6 module support.
-                </p>
-                
-                <h4>Security Standards</h4>
-                <p style="font-size: 14px; margin-bottom: 25px;">
-                    XSS prevention. Strict CSP compliance. No external script injection.
-                </p>
-            </div>
+            <h4 style="margin-top: 20px; margin-bottom: 10px;">Data Persistence</h4>
+            <p>
+                Base64-encoded source preservation. Reliable auto-save. Version-safe storage.
+            </p>
+            
+            <h4 style="margin-top: 20px; margin-bottom: 10px;">Browser Compatibility</h4>
+            <p>
+                Chrome 90+, Firefox 88+, Safari 14+, Edge 90+. Full ES6 module support.
+            </p>
+            
+            <h4 style="margin-top: 20px; margin-bottom: 10px;">Security Standards</h4>
+            <p>
+                XSS prevention. Strict CSP compliance. No external script injection.
+            </p>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- USE CASES -->
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <h2 style="text-align: center; font-size: 36px; margin-bottom: 50px;">Enterprise Applications</h2>
+        <h2 class="oe_slogan">Enterprise Applications</h2>
         
         <div class="oe_span4">
-            <div style="text-align: center; padding: 30px;">
-                <div class="icon-badge" style="font-size: 36px;">&#128200;</div>
-                <h4 style="font-size: 18px; margin-bottom: 15px;">Process Documentation</h4>
-                <p style="font-size: 14px;">
-                    Business workflows, approval chains, operational procedures with visual clarity.
-                </p>
+            <div class="oe_picture" style="text-align: center; margin-bottom: 15px;">
+                <span style="font-size: 48px;">&#128200;</span>
             </div>
+            <h4 style="text-align: center; margin-bottom: 10px;">Process Documentation</h4>
+            <p style="text-align: center;">
+                Business workflows, approval chains, operational procedures with visual clarity.
+            </p>
         </div>
         
         <div class="oe_span4">
-            <div style="text-align: center; padding: 30px;">
-                <div class="icon-badge" style="font-size: 36px;">&#128187;</div>
-                <h4 style="font-size: 18px; margin-bottom: 15px;">System Architecture</h4>
-                <p style="font-size: 14px;">
-                    Database schemas, API flows, microservices architecture documentation.
-                </p>
+            <div class="oe_picture" style="text-align: center; margin-bottom: 15px;">
+                <span style="font-size: 48px;">&#128187;</span>
             </div>
+            <h4 style="text-align: center; margin-bottom: 10px;">System Architecture</h4>
+            <p style="text-align: center;">
+                Database schemas, API flows, microservices architecture documentation.
+            </p>
         </div>
         
         <div class="oe_span4">
-            <div style="text-align: center; padding: 30px;">
-                <div class="icon-badge" style="font-size: 36px;">&#128197;</div>
-                <h4 style="font-size: 18px; margin-bottom: 15px;">Project Management</h4>
-                <p style="font-size: 14px;">
-                    Timeline visualization, dependency mapping, milestone tracking with Gantt charts.
-                </p>
+            <div class="oe_picture" style="text-align: center; margin-bottom: 15px;">
+                <span style="font-size: 48px;">&#128197;</span>
             </div>
+            <h4 style="text-align: center; margin-bottom: 10px;">Project Management</h4>
+            <p style="text-align: center;">
+                Timeline visualization, dependency mapping, milestone tracking with Gantt charts.
+            </p>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- CTA -->
-<section class="oe_container oe_dark" style="padding: 60px 20px;">
+<section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
         <div class="oe_span12" style="text-align: center;">
-            <h2 style="color: white; font-size: 32px; margin-bottom: 20px;">Deploy Professional Diagrams Today</h2>
-            <p style="color: #b0b0b0; font-size: 16px; margin-bottom: 35px;">
+            <h2 class="oe_slogan">Deploy Professional Diagrams Today</h2>
+            <p class="oe_mt16" style="font-size: 16px; margin-bottom: 30px;">
                 Transform your documentation with enterprise-grade visualization
             </p>
-            <div>
-                <a href="https://mermaid.js.org/intro/" target="_blank" class="btn btn-primary">
+            <p class="oe_mt32">
+                <a href="https://mermaid.js.org/intro/" target="_blank" class="btn btn-primary btn-lg" style="margin: 5px;">
                     View Documentation
                 </a>
-                <a href="https://github.com/K11E3R/mermaid_diagram" target="_blank" class="btn btn-secondary">
+                <a href="https://github.com/K11E3R/mermaid_diagram" target="_blank" class="btn btn-default btn-lg" style="margin: 5px;">
                     Source Code
                 </a>
-            </div>
+            </p>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- INSTALLATION -->
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <h2 style="text-align: center; font-size: 32px; margin-bottom: 40px;">Installation Process</h2>
-        
+        <h2 class="oe_slogan">Installation Process</h2>
         <div class="oe_span12">
             <ol style="max-width: 700px; margin: 0 auto; font-size: 15px; line-height: 2;">
                 <li>Deploy module to Odoo addons directory</li>
@@ -582,66 +287,56 @@
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- TECHNICAL INFO -->
-<section class="oe_container accent-section" style="padding: 50px 20px;">
+<section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
-        <h2 style="text-align: center; font-size: 32px; margin-bottom: 40px;">Technical Specifications</h2>
+        <h2 class="oe_slogan">Technical Specifications</h2>
         
         <div class="oe_span6">
-            <h4 style="margin-bottom: 20px;">Module Dependencies</h4>
-            <ul style="font-size: 14px; line-height: 1.8;">
+            <h4 style="margin-bottom: 15px;">Module Dependencies</h4>
+            <ul style="line-height: 1.8;">
                 <li><code>html_editor</code> (Odoo 19 core module)</li>
                 <li>Mermaid.js 11.x (CDN-served)</li>
             </ul>
         </div>
         
         <div class="oe_span6">
-            <h4 style="margin-bottom: 20px;">Platform Compatibility</h4>
-            <ul style="font-size: 14px; line-height: 1.8;">
-                <li>Odoo 19.0 Community & Enterprise</li>
+            <h4 style="margin-bottom: 15px;">Platform Compatibility</h4>
+            <ul style="line-height: 1.8;">
+                <li>Odoo 19.0 Community &amp; Enterprise</li>
                 <li>Odoo.sh, Odoo Online, On-Premise</li>
             </ul>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- SUPPORT -->
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <div class="oe_span12" style="text-align: center; padding: 40px 0;">
-            <h3 style="color: #ffffff; margin-bottom: 20px; font-size: 26px;">Technical Support</h3>
-            <p style="font-size: 15px; margin-bottom: 25px;">
+        <div class="oe_span12" style="text-align: center;">
+            <h3 style="margin-bottom: 15px;">Technical Support</h3>
+            <p style="margin-bottom: 25px;">
                 Report issues or request features via GitHub repository
             </p>
-            <a href="https://github.com/K11E3R/mermaid_diagram/issues" target="_blank" class="btn btn-primary">
-                Submit Issue
-            </a>
+            <p>
+                <a href="https://github.com/K11E3R/mermaid_diagram/issues" target="_blank" class="btn btn-primary">
+                    Submit Issue
+                </a>
+            </p>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- FOOTER -->
-<section class="oe_container" style="padding: 50px 20px;">
+<section class="oe_container">
     <div class="oe_row">
-        <div class="oe_span12" style="text-align: center;">
-            <p style="font-size: 14px; margin-bottom: 10px;">
-                <strong>Author:</strong> <a href="https://github.com/K11E3R">K11E3R</a>
+        <div class="oe_span12" style="text-align: center; padding: 30px 0; border-top: 2px solid #714B67;">
+            <p style="margin-bottom: 8px;">
+                <strong>Author:</strong> <a href="https://github.com/K11E3R" style="color: #714B67;">K11E3R</a>
             </p>
-            <p style="font-size: 14px; margin-bottom: 10px;">
+            <p style="margin-bottom: 8px;">
                 <strong>License:</strong> LGPL-3 | <strong>Version:</strong> 19.0.1.0.0
             </p>
-            <p style="font-size: 12px; margin-top: 20px; color: #808080;">
+            <p style="margin-top: 20px; font-size: 12px; color: #999;">
                 Professional diagramming for the Odoo ecosystem
             </p>
         </div>
     </div>
 </section>
-
-</body>
-</html>
